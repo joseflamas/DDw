@@ -1,12 +1,12 @@
 //################################################################
-//## DDLogoV000::18042015
+//## DDLogoV001::13032021
 //## Darc Data®, DarcData®, DD®, darc data®, darcdata®, dd®.
 //## FEELGOODSOFTWAREBYGUILLERMOGONZÁLEZIRIGOYENCOFOUNDERDD
 //################################################################
-//# Titulo: didi
+//# Titulo: Dark data
 //# País: México
-//# Año: 2015
-//# Técnica: Visualización de algoritmos.
+//# Año: 2021
+//# Técnica: Software
 //# Autor: Guillermo González Irigoyen
 
 
@@ -16,9 +16,9 @@ int pW, pH;
 PFont pTipografia;
 int pbordeSuperior  = 0;
 int pbordeIzquierdo = 3;
-int pTamanoLetra    = random(10,200);
-int pTamanoLinea    = 64;
-int pLargoLetra     = 64;
+int pTamanoLetra    = 24;
+int pTamanoLinea    = 26;
+int pLargoLetra     = 26;
 int pInterLineado   = 0;
 int pNumberodeCaracteresTotales = 42; //42 para un logo de 450X400 px aprox;
 int lposX,lposY;
@@ -27,7 +27,7 @@ String k1 = "DARC DATA";
 String k2 = "DARCDATA";
 String k3 = "DARC";
 String k4 = "DATA ";
-String combinaciones = "DARC DATA";
+String combinaciones = "DARC DATA DARC DATA";
 String kt = "";
 String cuerda = "";// { "DATA POR CUADRO"}
 int delayInterpretacion  = 250; //menos es mas tiempo.
@@ -37,26 +37,22 @@ int delayColision        = 2;
 
 
 
-
-
-
 void setup()
 {
   //CANVAS
-  background(255,255);
-  int altura = screen.height - (2*pTamanoLinea);
-  size(screen.width, altura, P2D);
+  //int altura = pH - (2*pTamanoLinea);
+  size(640, 480);//, P2D);
   pW=width;
   pH=height;
-  frameRate(delayInterpretacion);
-  textFont(createFont("AUTO", pTamanoLetra));
+  frameRate(24);
+  smooth();
+  background(255,255);
+  textFont(loadFont("SourceCodePro-Regular-24.vlw"));
   textSize(pTamanoLetra);
   lposX=pbordeIzquierdo;
   lposY=pTamanoLinea+pbordeSuperior;
   pNumberodeCaracteresTotales=((pW*(pH-pTamanoLinea))/(pTamanoLinea*pLargoLetra));
   delayInterpretacion=(pNumberodeCaracteresTotales);
-
-  
 }
 
 
@@ -66,8 +62,9 @@ void draw()
   //Color inicial NO MATCH
   background(255,255);
   fill(0,0,0,255);
+  smooth();
   delayI = delayInterpretacion;
-  frameRate(delayI);
+  //frameRate(delayI);
   for(int r = 0; r < pNumberodeCaracteresTotales; r++)
   {
     cuerda+=combinaciones.charAt(int(random(0,combinaciones.length())));
@@ -84,7 +81,7 @@ void draw()
   if( m1 != null )
   {
     lugarColision=cuerda.indexOf(m1[0]);
-    kt = 'k1';
+    kt = "k1";
     tamanoKey = k1.length();
     frameRate(delayColision);
     background(55,255);
@@ -94,7 +91,7 @@ void draw()
   if( m2 != null )
   {
     lugarColision=cuerda.indexOf(m2[0]);
-    kt = 'k2';
+    kt = "k2";
     tamanoKey = k2.length();
     frameRate(delayColision);
     background(50,255);
@@ -104,7 +101,7 @@ void draw()
   if( m3 != null )
   {
     lugarColision=cuerda.indexOf(m3[0]);
-    kt = 'k3';
+    kt = "k3";
     tamanoKey = k3.length();
     frameRate(delayColision);
     background(55,255);
@@ -114,7 +111,7 @@ void draw()
   if( m4 != null )
   {
     lugarColision=cuerda.indexOf(m4[0]);
-    kt = 'k4';
+    kt = "k4";
     tamanoKey = k4.length();
     frameRate(delayColision);
     background(255,255);
@@ -127,23 +124,23 @@ void draw()
                               i >= lugarColision &&
                               i <  lugarColision+tamanoKey)
     {
-      (kt == 'k1' || kt == 'k3') ? fill(255,255,255,255) : fill(0,0,0,255);
+      if (kt == "k1" || kt == "k3") { fill(255,255,255,255); } else { fill(0,0,0,255); }
 
     } else {
 
-      if(kt == 'k1')
+      if(kt == "k1")
       {
         fill(0,0,0,255);
       }
-      if(kt == 'k2')
+      if(kt == "k2")
       {
         fill(186,74,74,255);
       }
-      if(kt == 'k3')
+      if(kt == "k3")
       {
         fill(0,0,0,255);
       }
-      if(kt == 'k4')
+      if(kt == "k4")
       {
         fill(166,166,166,255);
       }
@@ -172,4 +169,3 @@ void draw()
 
   
 }
-
